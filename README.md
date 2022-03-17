@@ -3,7 +3,8 @@
 
 `fsa_simulation.py` simulate a **funded sub-account (FSA) partnership** between EonLabs and Researcher (RSR). A worst-but-still-unfailing performance (**WBSUP**) is always assumed in all FSAs. **WBSUP** is perhaps the most important concept to consider. So please don't hesitate to contact EonLabs for more information if you have any questions.
 
-- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th. Each column's significance is detailed in [What Each Column Means](#what-each-colum-means)
+- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th. Each column's significance is detailed in #what-each-column-means
+
 - They comprise information such as initial and subsequent fund injections, month start and end balances, realized profit, and settled RSR payment. Profit is the only thing that is imitated, not loss.
 - The realized profit delay may be adjusted from one to two months. Anything longer than a two-month period is not evaluated since it would surpass the WBSUP level, causing the requirement to fail.
 
