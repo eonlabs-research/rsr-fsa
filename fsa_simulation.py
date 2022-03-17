@@ -7,7 +7,6 @@ from rich.table import Table
 console = Console()
 from numerize import numerize # pip install numerize
 import inflect
-import re
 d = {}
 p = inflect.engine()
 rdf = lambda x: "{:.2f}".format(x)
@@ -119,7 +118,7 @@ while not(stopScript):
     d["licnZ"]  = FloatPrompt.ask(f'Software license fee amount? [green]\"$Z\"[/]', default=45500.00)
     d["timeL"]  = IntPrompt.ask(f'Max. # of months that [#00FF00]RSR BLADE REDUCED LICENSE FEE[/] can be settled? [green]\"L\"[/]', default=12)
     d["timeT"]  = d["freqM"] * 30 # day
-    overviewPrint("profit_share_simulation.py", "\'\'\'\'", "\'\'\'")
+    overviewPrint('fsa_simulation.py', "\'\'\'\'", "\'\'\'")
     for x_startupCapital in d["scapX"]:
         d["x_startupCapital"] = x_startupCapital
         textParameters      = (

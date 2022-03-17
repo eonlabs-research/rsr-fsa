@@ -3,7 +3,7 @@
 
 `fsa_simulation.py` simulate a **funded sub-account (FSA) partnership** between EonLabs and Researcher (RSR). A worst-but-still-unfailing performance (**WBSUP**) is always assumed in all FSAs. **WBSUP** is perhaps the most important concept to consider. So please don't hesitate to contact EonLabs for more information if you have any questions.
 
-- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th. Each column's significance is detailed in #what-each-colum-means?
+- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th. Each column's significance is detailed in [What Each Column Means](#what-each-colum-means)
 - They comprise information such as initial and subsequent fund injections, month start and end balances, realized profit, and settled RSR payment. Profit is the only thing that is imitated, not loss.
 - The realized profit delay may be adjusted from one to two months. Anything longer than a two-month period is not evaluated since it would surpass the WBSUP level, causing the requirement to fail.
 
@@ -34,7 +34,7 @@ Let's continue our illustration from the example above. Let's say point B ("B") 
 To illustrate, let's say "T" is agreed by EonLabs and RSR to be {d[timeT]} days. If there is a [#00ffff]5.8%[/] drawdown from an all-time high ("A" = 48390 BUSD), it means the equity curve is hitting a trough (80000*(1-0.058) = 75360 BUSD).
 WBSUP requires that a minimal EXTENDED ASSET VALUE ("A"*"R%" = 80000*0.058 = 4640 BUSD) must be gained within {d[timeT]} days after the day when "A" happens. In other words, the equity balance of total asset value must attain or exceed "B" ("A"*(1+"R%") = 80000*(1+0.058) = 84640 BUSD) within {d[timeT]} days after the day when "A" happens.
 
-# What Each Column Means?
+# What Each Column Means
 
 [#BB8FCE][b]EQUITY BALANCE MONTH START[/][/] ("X") - The Researcher (RSR) is responsible for trading an agreed number of funded sub-accounts (FSAs). "X" is the asset value of all FSAs at the beginning of the month. "X" is denominated in stablecoin (e.g. BUSD). RSR can freely rebalance the funds among the FSAs at any time.
 
