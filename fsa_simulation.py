@@ -13,33 +13,6 @@ rdf = lambda x: "{:.2f}".format(x)
 rd = lambda x: numerize.numerize(x)
 def textOverviewWrapper():
     txtOverview = f''''
-    ''# OVERVIEW
-    The simulation below depicts a funded sub-account (FSA) partnership between EonLabs and Researcher (RSR). This script's default parameter settings are not fixed in stone. Researchers (RSR) are urged to experiment with the parameters until they discover an appropriate set of settings to submit to EonLabs for consideration.
-    
-    1. A worst-but-still-unfailing performance (WBSUP) is always assumed in all funded sub-account (FSA) partnerships. It is perhaps the most important concept to consider in the funded sub-account (FSA) partnership. So please don't hesitate to contact EonLabs for more information if you have any questions.
-    2. The simulation is presented in the form of a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th. Each column's significance is detailed below.
-    3. They comprise information such as initial and subsequent fund injections, month start and end balances, realized profit, and settled RSR payment. Profit is the only thing that is imitated, not loss.
-    4. The realized profit delay may be adjusted from one to two months. Anything longer than a two-month period is not evaluated since it would surpass the WBSUP level, causing the requirement to fail.
-    
-    '' # WORST-BUT-STILL-UNFAILING PERFORMANCE (WBSUP)
-    WBSUP is used to evaluate the trading performance of researchers (RSR). It is built in such a manner that everyone understands what is anticipated before trading starts.
-    
-    '' ## DEFINITION
-    WBSUP means that a [yellow][i]minimal[/][/] [red][b]EXTENDED ASSET VALUE[/][/], "R%" (e.g. {d[rateR]}), must be gained within an agreed period of time, "T" (e.g. {d[timeT]} days). Note that "R%" is evaluated dynamically and is relative to the risk taken recently. The maximum allowed downside risk to be taken by RSR is "-R%"
-    
-    '' ## MAXIMUM ALLOWED DOWNSIDE RISK FROM ALL-TIME HIGH ("A")
-    If "-R%" = -{d[rateR]}, it means that the maximum drawdown cannot be larger than the multiple of {d[rateR]} from [#ffff00][i]any[/][/] all-time high on the equity curve of total asset value.
-    
-    '' ### FOR EXAMPLE
-    Let's say point A ("A") is an all-time high on equity curve. "-R%" is the extent of maximum drawdown between "A" and before "A" is surpassed again. "-R%" cannot exceed an agreed value (e.g. -{d[rateR]}) during drawdown. If "-R%" exceeded the agreed value, WBSUP is considered failed.
-    
-    '' ## MAXIMUM ALLOWED TIME TO REACH NEXT ALL-TIME HIGH ("B")
-    Let's continue our illustration from the example above. Let's say point B ("B") is the next all-time high on equity curve, where "B"="A"*(1+"R%"). The value of "R%" in the equation equals the recent drawdown "-R%", which happens between "A" and "B". Apparently, the "-R%" value might vary as long as it doesn't exceed the maximum allowed downside risk from "A". WBSUP requires that RSR balance must attain "B" within certain agreed period ("T"). If "B" cannot be attained within that period, WBSUP is considered failed.
-    
-    '' ### FOR EXAMPLE
-    To illustrate, let's say "T" is agreed by EonLabs and RSR to be {d[timeT]} days. If there is a [#00ffff]5.8%[/] drawdown from an all-time high ("A" = 48390 BUSD), it means the equity curve is hitting a trough (80000*(1-0.058) = 75360 BUSD).
-    WBSUP requires that a minimal EXTENDED ASSET VALUE ("A"*"R%" = 80000*0.058 = 4640 BUSD) must be gained within {d[timeT]} days after the day when "A" happens. In other words, the equity balance of total asset value must attain or exceed "B" ("A"*(1+"R%") = 80000*(1+0.058) = 84640 BUSD) within {d[timeT]} days after the day when "A" happens.
-    
     ''# EXPLAIN WHAT EACH COLUMN MEANS
     [#BB8FCE][b]EQUITY BALANCE MONTH START[/][/] ("X") - The Researcher (RSR) is responsible for trading an agreed number of funded sub-accounts (FSAs). "X" is the asset value of all FSAs at the beginning of the month. "X" is denominated in stablecoin (e.g. BUSD). RSR can freely rebalance the funds among the FSAs at any time.
     
@@ -112,7 +85,7 @@ while not(stopScript):
     console.print(Markdown(""" -------------------------------------------------------------------------  """))
     d["scapX"]  = [i * 1000 for i in [float(x) for x in Prompt.ask('Startup trading capital injection? [green]\"X\"[/] (in thousands)', default='26 260').split()]]
     d["rateR"]  = FloatPrompt.ask(f'Rate of extended asset value? [green]\"R%\"[/]', default=0.10)
-    d["freqM"]  = IntPrompt.ask(f'Month to extend assset {d["rateR"]*100}% beyond the last all-time high? [green]\"M\"[/]', default=2)
+    d["freqM"]  = IntPrompt.ask(f'Stagnation of EAV, i.e. Month needed to extend assset {d["rateR"]*100}% beyond the last all-time high? [green]\"M\"[/]', default=2)
     d["rateS"]  = FloatPrompt.ask(f'Percentage of profit share on the extended asset value? [green]\"S%\"[/]', default=0.25)
     d["rateY"]  = FloatPrompt.ask(f'Injected fund amount as a percentage of the post-fee sub-account balance? [green]\"Y%\"[/]', default=0.30)
     d["licnZ"]  = FloatPrompt.ask(f'Software license fee amount? [green]\"$Z\"[/]', default=45500.00)
