@@ -3,8 +3,8 @@
 
 `fsa_simulation.py` simulate a **funded sub-account (FSA) partnership** between EonLabs and Researcher (RSR). A worst-but-still-unfailing performance (**WBSUP**) is always assumed in all FSAs. **WBSUP** is perhaps the most important concept to consider. So please don't hesitate to contact EonLabs for more information if you have any questions.
 
-- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th. Each column's significance is detailed in [What Each Column Means](#what-each-column-means)
-- They comprise information such as initial and subsequent fund injections, starting and ending balances of every month, realized profit, and settled RSR payment.
+- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th.
+- The columns comprise information such as initial and subsequent fund injections, starting and ending balances of every month, realized profit, and settled RSR payment.
 - Not loss is assumed. Only profit is simulated.
 - Stagnation of extended asset value (EAV) is always less than two (2) months.
 - You can choose to adjust the stagnation，which is either 1 or 2 month. Anything longer than a two-month period is not acceptable by EonLabs since it would fail the minimal requirements of WBSUP (i.e. exceed the risk tolerance as defined by WPSUP).
