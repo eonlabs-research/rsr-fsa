@@ -38,7 +38,7 @@ def researcherPartnershipSimulationInTable(rateR,rateS,rateY,x_startupCapital,li
     table.add_column(f'[red]EXTENDED ASSET VALUE[/] [#00ffff]R%:{rdf(rateR)}[/]', justify="right", width=8)
     table.add_column(f'[#00FF00]RSR TECHNO FEE[/] [#00ffff]S%:{rdf(rateS)}[/]', justify="right", width=8)
     table.add_column(f'[#00FF00]RSR ACCRUED TECHNO FEE[/]', justify="right", width=8)
-    table.add_column(f'[#00FF00]RSR REDUCED LICENSE FEE[/]', justify="right", width=7)
+    table.add_column(f'[#00FF00]RSR REDUCED ONE- TIME FEE[/]', justify="right", width=7)
     table.add_column(f'[#00FF00]RSR ACCRUED FEE[/]', justify="right", width=8)
     table.add_column(f'[#FFB6C1]EONLABS INJECTED FUND[/] [#00ffff]Y%:{rdf(rateY)}[/]', justify="right", width=9)
     table.add_column(f'[#FFB6C1]EONLABS ACCRUED INJECTED FUND[/]', justify="right", width=8)
@@ -52,9 +52,9 @@ def researcherPartnershipSimulationInTable(rateR,rateS,rateY,x_startupCapital,li
         rsrLs.append(licnZ-sum(rsrTs) if (licnZ-sum(rsrTs) if kM == timeL else 0.00) > 0.00 else 0.00)
         rsrAs.append(sum(rsrTs) + sum(rsrLs))
         eonFs.append((eqbSs[kM] + exAVs[kM] - rsrTs[kM])*d["rateY"] if (
-            sum(rsrLs)==0.00 #^ return zero if RSR license fee has been paid
-            and rsrAs[kM]<licnZ #^ return zero if RSR accrued fee has exceed software license fee
-            #and eqbSs[kM]*rateR*rateS<licnZ #^ return zero if equity balance month start amount can potentially make up for the license fee in its next extended asset value cycle
+            sum(rsrLs)==0.00 #^ return zero if RSR ONE-TIME FEE has been paid
+            and rsrAs[kM]<licnZ #^ return zero if RSR accrued fee has exceed ONE-TIME FEE
+            #and eqbSs[kM]*rateR*rateS<licnZ #^ return zero if equity balance month start amount can potentially make up for the ONE-TIME FEE in its next extended asset value cycle
             )  else 0.00)
         eqbEs.append(eqbSs[kM] + exAVs[kM] - rsrTs[kM] + eonFs[kM])
         table.add_row(f'{rd(eqbSs[kM])}',
@@ -64,7 +64,6 @@ def researcherPartnershipSimulationInTable(rateR,rateS,rateY,x_startupCapital,li
                       f'{rd(sum(eonFs))}',f'{rd(eqbEs[kM])}',)
     return table,eqbSs,exAVs,rsrTs,rsrLs,rsrAs,eonFs,eqbEs
 
-
 stopScript = False
 while not(stopScript):
     console.print(Markdown(""" -------------------------------------------------------------------------  """))
@@ -73,29 +72,30 @@ while not(stopScript):
     d["freqM"]  = IntPrompt.ask(f'Stagnation of EAV, i.e. Month needed to extend assset {d["rateR"]*100}% beyond the last all-time high? [green]\"M\"[/]', default=2)
     d["rateS"]  = FloatPrompt.ask(f'Percentage of profit share on the extended asset value? [green]\"S%\"[/]', default=0.25)
     d["rateY"]  = FloatPrompt.ask(f'Injected fund amount as a percentage of the post-fee sub-account balance? [green]\"Y%\"[/]', default=0.30)
-    d["licnZ"]  = FloatPrompt.ask(f'Software license fee amount? [green]\"$Z\"[/]', default=45500.00)
-    d["timeL"]  = IntPrompt.ask(f'Max. # of months that [#00FF00]RSR REDUCED LICENSE FEE[/] can be settled? [green]\"L\"[/]', default=12)
+    d["licnZ"]  = FloatPrompt.ask(f'[#00FF00]RSR ONE-TIME FEE[/] amount? [green]\"$Z\"[/]', default=45500.00)
+    d["timeL"]  = IntPrompt.ask(f'Max. # of months that [#00FF00]RSR REDUCED ONE-TIME FEE[/] can be settled? [green]\"L\"[/]', default=12)
     d["timeT"]  = d["freqM"] * 30 # day
     
     overviewPrint('fsa_simulation.py', "\'\'\'\'", "\'\'\'")
     for x_startupCapital in d["scapX"]:
         d["x_startupCapital"] = x_startupCapital
-        textParameters      = (
-            f'"X": [#00ffff]{rd(x_startupCapital)} BUSD[/] is the first [#FFB6C1]EONLABS INJECTED FUND[/] to the FSAs owned by EonLabs but managed by RSR',
-            f'"-R%": [#00ffff]-{d["rateR"]*100}%[/] is the maximum allowed drawdown from any all-time high on equity curve',
-            f'"R%": [#00ffff]{d["rateR"]*100}%[/] is the rate of [b][red]EXTENDED ASSET VALUE[/][/] every {d["freqM"]} months, simulating the WBSUP',
-            f'"S%": [#00ffff]{d["rateS"]*100}%[/] of the extended asset value ([#ffff00][i]above[/][/] last ATH marked on settlement date) is payable to RSR',
-            f'"Y%": [#00ffff]{d["rateY"]*100}%[/] of the equity balance （[#ffff00][i]after[/][/] [#00FF00]RSR TECHNO FEE[/] deducted) as new funds injection',
-            f'"Z": [#00ffff]{d["licnZ"]}[/] license fee/year payable through [#00FF00]RSR ACCRUED TECHNO FEE[/] + [#00FF00]RSR REDUCED LICENSE FEE[/]',
-            f'"L": [#00ffff]{d["timeL"]}[/] is the maximum number of month that EonLabs can settle the difference of software license',
-        )
         table,eqbSs,exAVs,rsrTs,rsrLs,rsrAs,eonFs,eqbEs = researcherPartnershipSimulationInTable(
         d["rateR"],d["rateS"],d["rateY"],d["x_startupCapital"],d["licnZ"],d["timeL"], Markdown(f'''# SIMULATION OF 24 MONTH WITH STARTUP CAPITAL OF {rd(x_startupCapital)} BUSD''')
         )
-        textLicenseFee      = (
-            f'On the [#00ffff]{eonFs.index(0)}th month[/], [#FFB6C1]EONLABS INJECTED FUND[/] to the funded sub-accounts (FSAs) managed by the researcher (RSR) [#ffff00][i]stopped[/][/] because [#00FF00]RSR ACCRUED FEE[/] of [#00ffff]{rd(rsrAs[eonFs.index(0)])} BUSD[/] is [yellow][i]equal (or exceeded)[/][/] [#00ffff]{rd(d["licnZ"])} BUSD[/] (SOFTWARE LICENSE FEE "$Z"). And from this point forward:', 
-            f'1. EonLabs is no longer obligated to inject/contribute more fund to the FSAs from this month forward.',
-            f'2. RSR grants EonLabs the system software license so that EonLabs can use and operate it to generate trading strategies for the next twelve (12) months and to trade clients funds without having the need to profit share with RSR.',
+        textParameters      = (
+            f'"X": [#00ffff]{rd(x_startupCapital)} BUSD[/] is the first [#FFB6C1]EONLABS INJECTED FUND[/] to the FSAs owned by EonLabs but managed by RSR',
+            f'"-R%": [#00ffff]-{d["rateR"]*100}%[/] is the maximum allowed drawdown from any all-time highs (ATHs) on the equity curve (EC)',
+            f'"M": [#00ffff]{d["freqM"]*30} days[/] is the maximum allowed stagnation of [b][red]EXTENDED ASSET VALUE (EAV)[/][/] from any ATHs on EC',
+            f'"R%": [#00ffff]{d["rateR"]*100}%[/] is the rate of [b][red]EAV[/][/] from the monthly settled all-time highs every {d["freqM"]} months',
+            f'"S%": [#00ffff]{d["rateS"]*100}%[/] of [b][red]EAV[/][/] ([#ffff00][i]above[/][/] [#BB8FCE]SETTLED EQUITY BALANCE MONTH END[/] of {d["freqM"]}-month ago) is payable to RSR',
+            f'"Y%": [#00ffff]{d["rateY"]*100}%[/] of the equity balance（[#ffff00][i]after[/][/] [#00FF00]RSR TECHNO FEE[/] deducted) is the new funds injection',
+            f'"Z": [#00ffff]{d["licnZ"]} BUSD[/] is [#00FF00]RSR ONE-TIME FEE[/] payable through [#00FF00]RSR ACCRUED TECHNO FEE[/] + [#00FF00]RSR REDUCED ONE-TIME FEE[/]',
+            f'"L": [#00ffff]{d["timeL"]}-month[/] is the maximum wait time that EonLabs can choose to settle [#00FF00]RSR ONE-TIME FEE[/]',
+        )
+        textOneTimeFee      = (
+            f'On the [#00ffff]{eonFs.index(0)}th month[/], [#FFB6C1]EONLABS INJECTED FUND[/] to the funded sub-accounts (FSAs) managed by the researcher (RSR) [#ffff00][i]stopped[/][/] because [#00FF00]RSR ACCRUED FEE[/] of [#00ffff]{rd(rsrAs[eonFs.index(0)])} BUSD[/] is [yellow][i]equal (or exceeded)[/][/] [#00ffff]{rd(d["licnZ"])} BUSD[/] ([#00FF00]RSR ONE-TIME FEE[/] "$Z"). And from this point forward:', 
+            f'1. EonLabs is no longer obligated to inject/contribute more fund to the FSAs.',
+            f'2. RSR grants EonLabs the rights of using predetermined intellectual properties so that EonLabs can use and operate them to generate trading strategies for the next twelve (12) months and to trade clients funds without having the need to profit share with RSR.',
             f'3. Because the partnership contract period is two (2) years, RSR is responsible to continue to trade the FSAs that have been existent for the first {p.number_to_words(eonFs.index(0))} ({eonFs.index(0)}) months and is entitled to receive profit sharing from the FSAs for the remaining {p.number_to_words(24-eonFs.index(0))} ({24-eonFs.index(0)}) months.'
         )
         textSummary         = (
@@ -105,9 +105,9 @@ while not(stopScript):
             f'[#00ffff]{rd((eqbEs[-1]/sum(eonFs)-1)*100)}%[/] is the return on investment enjoyed by EonLabs based on [#FFB6C1]EONLABS ACCRUED INJECTED FUND[/].'
         )
         console.print(
-            Markdown(f"""#  PARAMETERS: {rdf(x_startupCapital)} BUSD AS STARTUP CAPITAL  """), *textParameters,
             table,
-            Markdown(f"""#  FULL USAGE RIGHT OF THE SYSTEM SOFTWARE ON THE {eonFs.index(0)}th MONTH  """), *textLicenseFee,
+            Markdown(f"""#  PARAMETERS: {rdf(x_startupCapital)} BUSD AS STARTUP CAPITAL  """), *textParameters,
+            Markdown(f"""#  FULL USAGE RIGHT OF THE SYSTEM SOFTWARE ON THE {eonFs.index(0)}th MONTH  """), *textOneTimeFee,
             Markdown(f"""#  SUMMARY AT THE END OF THE 24TH MONTH  """), *textSummary,
             sep= "\n")
         console.print(Markdown(""" ---------- """))

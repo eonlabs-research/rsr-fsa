@@ -3,7 +3,7 @@
 
 `fsa simulation.py` simulates an EonLabs-Researcher **funded sub-account (FSA) partnership** (RSR). In all FSAs, a worst-but-still-unfailing performance (**WBSUP**) is assumed. The most important concept to consider is **WBSUP**. So, if you have any questions, please don't hesitate to contact EonLabs for more information.
 
-- The script `fsa simulation.py` creates a table with ten (10) columns and twenty-five (25) rows. From the 0th to the 24th, each row represents a single month.
+- The script `fsa simulation.py` creates a table with ten (10) columns and twenty-five (25) rows. It simulates a standard 24-month contract period from the 1st to the 25th, each row represents a single month. The 0-th month is shown as a startup line.
 - The columns include data on initial and subsequent fund injections, monthly beginning and ending balances, realized profit, and settled RSR payment.
 - There is no expectation of loss. Profit is the only thing that is simulated.
 - Extended asset value (EAV) stagnation is always less than two (2) months.
