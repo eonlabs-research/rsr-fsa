@@ -8,6 +8,7 @@
 - Not loss is assumed. Only profit is simulated.
 - Stagnation of extended asset value (EAV) is always less than two (2) months.
 - You can choose to adjust the stagnation，which is either 1 or 2 month. Anything longer than a two-month period is not acceptable by EonLabs since it would fail the minimal requirements of WBSUP (i.e. exceed the risk tolerance as defined by WPSUP).
+- `L-th month`, `"D"` and `"Z"` is related to a one-time license fee (or sign-on bonus in case of full-time employment) that can be structured into the simulation.
 
 `fsa_simulation.py` default parameter settings are not fixed in stone. Researchers (RSR) are urged to experiment with the parameters until they discover an appropriate set of settings to submit to EonLabs for consideration.
 
@@ -17,30 +18,30 @@
 
 ## DEFINITION OF WBSUP
 
-**WBSUP** means that a _minimal_ **EXTENDED ASSET VALUE (EAV)**, "R%" (e.g. 10% or 0.10), must be gained within an agreed period of time, "T" (e.g. 60 days or 1 month). Note that the value of "R%" is evaluated dynamically and is relative to the downside risk taken recently. The maximum allowed downside risk to be taken by RSR is "-R%"
+**WBSUP** means that a _minimal_ **EXTENDED ASSET VALUE (EAV)**, `"R%"` (e.g. 10% or 0.10), must be gained within an agreed period of time, `"T"` (e.g. 60 days or 1 month). Note that the value of `"R%"` is evaluated dynamically and is relative to the downside risk taken recently. The maximum allowed downside risk to be taken by RSR is `"-R%"`.
 
-### MAXIMUM ALLOWED DOWNSIDE RISK FROM ALL-TIME HIGH ("A")
+### MAXIMUM ALLOWED DOWNSIDE RISK FROM ALL-TIME HIGH (A)
 
-If "-R%" = -10% (or `-0.10`), it means that the maximum drawdown cannot be larger than the multiple of `0.10` from _any_ all-time high on the equity curve of total asset value.
+If `"-R%" = -10%` (or `-0.10`), it means that the maximum drawdown cannot be larger than the multiple of `0.10` from _any_ all-time high on the equity curve of total asset value.
 
-#### FOR EXAMPLE
+#### For example
 
-Let's say point A ("A") is an all-time high on equity curve. "-R%" is the extent of maximum drawdown between "A" and before "A" is surpassed again. "-R%" cannot exceed an agreed value (e.g. `-0.10`) during drawdown. If "-R%" exceeded the agreed value, WBSUP is considered failed.
+Let's say point A (`"A"`) is an all-time high on equity curve. `"-R%"` is the extent of maximum drawdown between `"A"` and before `"A"` is surpassed again. `"-R%"` cannot exceed an agreed value (e.g. `-0.10`) during drawdown. If `"-R%"` exceeded the agreed value, WBSUP is considered failed.
 
-### MAXIMUM ALLOWED TIME TO REACH NEXT ALL-TIME HIGH ("B")
+### MAXIMUM ALLOWED TIME TO REACH NEXT ALL-TIME HIGH (B)
 
-Let's continue from the example above. Let's say point B ("B") is the next all-time high on equity curve, where `"B"="A"*(1+"R%")`. The value of "R%" in the equation equals the recent drawdown "-R%", which happens between "A" and "B". Apparently, every drawdown from the peaks is different and as long as they do not exceed the maximum allowed downside risk from their respective "A"s, the actual "-R%" values might vary from one to another. WBSUP requires that the equity curve must attain "B" within certain agreed period ("T"). If "B" cannot be attained within that period, WBSUP is considered failed.
+Let's continue from the example above. Let's say point B (`"B"`) is the next all-time high on equity curve, where `"B"="A"*(1+"R%")`. The value of `"R%"` in the equation equals the recent drawdown `"-R%"`, which happens between `"A"` and `"B"`. Apparently, every drawdown from the peaks is different and as long as they do not exceed the maximum allowed downside risk from their respective `"A"s`, the actual `"-R%"` values might vary from one to another. WBSUP requires that the equity curve must attain `"B"` within certain agreed period (`"T"`). If `"B"` cannot be attained within that period, WBSUP is considered failed.
 
-#### FOR EXAMPLE
+#### To illustrate
 
-To illustrate, let's say "T" is agreed by EonLabs and RSR to be `60 days`. If there is a 5.8% (or `-0.058`) drawdown from an all-time high (`"A" = 48390 BUSD`), it means the equity curve is hitting a trough (`80000*(1-0.058) = 75360 BUSD`).
+Let's say `"T"` is agreed by EonLabs and RSR to be `60 days`. If there is a 5.8% (or `-0.058`) drawdown from an all-time high (`"A" = 48390 BUSD`), it means the equity curve is hitting a trough (`80000*(1-0.058) = 75360 BUSD`).
 WBSUP requires that a _minimal_ **EXTENDED ASSET VALUE (EAV)** (`"A"*"R%" = 80000*0.058 = 4640 BUSD`) must be gained within `60 days` after the day when "A" happens. In other words, the equity balance of total asset value must attain or exceed "B" (`"A" * (1+"R%") = 80000 * (1+0.058) = 84640 BUSD`) within `60 days` after the day when "A" happens.
 
-# EXPLAIN WHAT EACH COLUMN MEANS
+## EXPLAIN WHAT EACH COLUMN MEANS
 
 ### EQUITY BALANCE MONTH START (X)
 
-The Researcher (RSR) is responsible for trading an agreed number of funded sub-accounts (FSAs). `"X"` is the asset value of all FSAs at the beginning of the month. `"X"` is denominated in stablecoin (e.g. BUSD). RSR can freely rebalance the funds among the FSAs at any time.
+The Researcher (RSR) is responsible for trading an agreed number of funded sub-accounts (FSAs). `"X"` is the asset value of all FSAs at the beginning of the month. `"X"` is denominated in stablecoin (e.g. BUSD). RSR can freely re-balance the funds among the FSAs at any time.
 
 ### EXTENDED ASSET VALUE (A * R%)
 
@@ -56,7 +57,7 @@ Cumulative **RSR TECHNO FEE** that RSR received from EonLabs.
 
 ### RSR REDUCED LICENSE FEE (D)
 
-`"D"` is the difference between the license fee (`"Z" BUSD`) and **RSR ACCRUED FEE**. It is a one-time fee payable by EonLabs to RSR not later than certain month (e.g. 12th month). However, EonLabs is entitled to settle the payment of `"D"` ahead of it. In this simulation, we assume it to be settled on the `L-th month`. 
+`"D"` is the difference between the license fee (`"Z" BUSD`) and **RSR ACCRUED FEE**. It is a one-time fee payable by EonLabs to RSR not later than certain month (e.g. 12th month). However, EonLabs is entitled to settle the payment of `"D"` ahead of it. In this simulation, we assume it to be settled on the `L-th month`.
 
 `"D" = "Z" BUSD - RSR ACCRUED TECHNO FEE`, where `"Z"` is the license fee.  
 
