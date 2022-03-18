@@ -1,80 +1,95 @@
 
 # Researcher (RSR) Funded Sub-Account (FSA) Partnership Simulation
 
-`fsa_simulation.py` simulate a **funded sub-account (FSA) partnership** between EonLabs and Researcher (RSR). A worst-but-still-unfailing performance (**WBSUP**) is always assumed in all FSAs. **WBSUP** is perhaps the most important concept to consider. So please don't hesitate to contact EonLabs for more information if you have any questions.
+`fsa simulation.py` simulates an EonLabs-Researcher **funded sub-account (FSA) partnership** (RSR). In all FSAs, a worst-but-still-unfailing performance (**WBSUP**) is assumed. The most important concept to consider is **WBSUP**. So, if you have any questions, please don't hesitate to contact EonLabs for more information.
 
-- `fsa_simulation.py` will generate a table with ten (10) columns and twenty-five (25) rows. Each row represents a single month, from the 0th to the 24th.
-- The columns comprise information such as initial and subsequent fund injections, starting and ending balances of every month, realized profit, and settled RSR payment.
-- Not loss is assumed. Only profit is simulated.
-- Stagnation of extended asset value (EAV) is always less than two (2) months.
-- You can choose to adjust the stagnation, which is either 1 or 2 month. Anything longer than a two-month period is not acceptable by EonLabs since it would fail the minimal requirements of WBSUP (i.e. exceed the risk tolerance as defined by WPSUP).
-- `L-th month`, `"D"` and `"Z"` is related to a one-time license fee (or sign-on bonus in case of full-time employment) that can be structured into the simulation.
+- The script `fsa simulation.py` creates a table with ten (10) columns and twenty-five (25) rows. From the 0th to the 24th, each row represents a single month.
+- The columns include data on initial and subsequent fund injections, monthly beginning and ending balances, realized profit, and settled RSR payment.
+- There is no expectation of loss. Profit is the only thing that is simulated.
+- Extended asset value (EAV) stagnation is always less than two (2) months.
+- You have the option of changing the duration of the stagnation, which can be 1 or 2 months. EonLabs will not accept anything longer than a two-month period because it would fail the WBSUP's minimum requirements (i.e. exceed the risk tolerance as defined by WPSUP).
+- The terms `L-th month`, `D`, and `Z` refer to a one-time license fee (or a sign-on bonus in the case of full-time employment) that can be built into the simulation.
 
-`fsa_simulation.py` default parameter settings are not fixed in stone. Researchers (RSR) are urged to experiment with the parameters until they discover an appropriate set of settings to submit to EonLabs for consideration.
+The default parameter settings for `fsa simulation.py` are not set in stone. Researchers (RSR) are encouraged to play around with the parameters until they find a set of settings that they can submit to EonLabs for consideration.
 
 # WORST-BUT-STILL-UNFAILING PERFORMANCE (WBSUP)
 
-**WBSUP** is used to evaluate the trading performance of researchers (RSR). It is built in such a manner that everyone understands what is anticipated before trading starts.
+**WBSUP** is a standard that EonLabs use to assess the RSR's trading performance. It is designed in such a way that everyone knows what to expect before trading begins.
 
 ## DEFINITION OF WBSUP
 
-**WBSUP** means that a _minimal_ **EXTENDED ASSET VALUE (EAV)**, `"R%"` (e.g. 10% or 0.10), must be gained within an agreed period of time, `"T"` (e.g. 60 days or 1 month). Note that the value of `"R%"` is evaluated dynamically and is relative to the downside risk taken recently. The maximum allowed downside risk to be taken by RSR is `"-R%"`.
+**WBSUP** denotes that a _minimal_ **EXTENDED ASSET VALUE (EAV)** must be obtained within a specified time period, `"T"` (e.g. `60 days` or `1 month`). It's worth noting that the `EAV` value is dynamically calculated and proportional to the recent downside risk taken. RSR is only allowed to take a maximum of `-R%` of risk on the downside.
 
 ### MAXIMUM ALLOWED DOWNSIDE RISK FROM ALL-TIME HIGH (A)
 
-If `"-R%" = -10%` (or `-0.10`), it means that the maximum drawdown cannot be larger than the multiple of `0.10` from _any_ all-time high on the equity curve of total asset value.
+If `"-R%"` = `-10%` (i.e. `-0.10`), the maximum drawdown from _any_ all-time high on the equity curve of total asset value cannot be greater than the multiple of `0.10`.
 
-#### For example
+#### As an illustration
 
-Let's say point A (`"A"`) is an all-time high on equity curve. `"-R%"` is the extent of maximum drawdown between `"A"` and before `"A"` is surpassed again. `"-R%"` cannot exceed an agreed value (e.g. `-0.10`) during drawdown. If `"-R%"` exceeded the agreed value, WBSUP is considered failed.
+Let's say point A (`"A"`) on the equity curve is an all-time high. The maximum drawdown between `"A"` and before `"A"` is surpassed again is measured in `"-R%"`. During drawdown, `"-R%"` cannot exceed an agreed-upon value (e.g. `-0.10`). WBSUP is considered a failure if `"-R%"` exceeds the agreed-upon value.
 
-### MAXIMUM ALLOWED TIME TO REACH NEXT ALL-TIME HIGH (B)
+### THE LAST TIME ALLOWED TO REACH THE NEXT ALL-TIME HIGH (B)
 
-Let's continue from the example above. Let's say point B (`"B"`) is the next all-time high on equity curve, where `"B"="A"*(1+"R%")`. The value of `"R%"` in the equation equals the recent drawdown `"-R%"`, which happens between `"A"` and `"B"`. Apparently, every drawdown from the peaks is different and as long as they do not exceed the maximum allowed downside risk from their respective `"A"s`, the actual `"-R%"` values might vary from one to another. WBSUP requires that the equity curve must attain `"B"` within certain agreed period (`"T"`). If `"B"` cannot be attained within that period, WBSUP is considered failed.
+Let's continue with the previous example. Let's pretend that point B (`"B"`) is the next all-time high on the equity curve, and that `"B"="A"*(1+"R%")`. The recent drawdown `"-R%"`, which occurs between `"A"` and `"B"`, is equal to the value of `"R%"` in the equation. Every drawdown from the peaks appears to be unique, and as long as they do not exceed the maximum allowed downside risk from their respective `"A"`s, the actual `"-R%"` values may differ from one to the next. The equity curve must reach `"B"` within a certain agreed-upon period (`"T"`) according to WBSUP. WBSUP is considered a failure if `"B"` is not achieved within that time frame.
 
-#### To illustrate
+#### To give you an example
 
-Let's say `"T"` is agreed by EonLabs and RSR to be `60 days`. If there is a 5.8% (or `-0.058`) drawdown from an all-time high (`"A" = 48390 BUSD`), it means the equity curve is hitting a trough (`80000*(1-0.058) = 75360 BUSD`).
-WBSUP requires that a _minimal_ **EXTENDED ASSET VALUE (EAV)** (`"A"*"R%" = 80000*0.058 = 4640 BUSD`) must be gained within `60 days` after the day when "A" happens. In other words, the equity balance of total asset value must attain or exceed "B" (`"A" * (1+"R%") = 80000 * (1+0.058) = 84640 BUSD`) within `60 days` after the day when "A" happens.
+Let's say EonLabs and RSR agree on `"T"` to be `60 days`. If the equity curve has fallen 5.8% (or `-0.058`) from its all-time high (`"A" = 48390 BUSD`), it has reached a trough (`80000*(1-0.058) = 75360 BUSD`).
+WBSUP mandates that a _minimal_ **EXTENDED ASSET VALUE (EAV)** (i.e. `"A"*"R%" = 80000*0.058 = 4640 BUSD`) be achieved within `60 days` of the day `"A"` occurs. In other words, within `60 days` of the day `"A"` occurs, the equity balance of total asset value must equal or exceed `"B"` (i.e. `"A" * (1+"R%") = 80000 * (1+0.058) = 84640 BUSD`).
 
-## EXPLAIN WHAT EACH COLUMN MEANS
+## EXPLAIN THE MEANING OF EACH COLUMN
 
-### EQUITY BALANCE MONTH START (X)
+### MONTHLY EQUITY BALANCE START (X)
 
-The Researcher (RSR) is responsible for trading an agreed number of funded sub-accounts (FSAs). `"X"` is the asset value of all FSAs at the beginning of the month. `"X"` is denominated in stablecoin (e.g. BUSD). RSR can freely re-balance the funds among the FSAs at any time.
+- The Researcher (RSR) is in charge of trading a predetermined number of funded sub-accounts (FSAs). The asset value of all FSAs at the start of the month is `"X"`.
+- `"X"` is a stablecoin denominator (e.g. BUSD).
+- RSR has complete control over the funds in the FSAs and can rebalance them at any time.
 
-### EXTENDED ASSET VALUE (A * R%)
+### EXTENDED ASSET VALUE (EAV = A * R%)
 
-It means trading profit. Here we simulate `"R%"` as a fixed value that is attained every `"M"` months. During LIVE trading, EonLabs capture Margin Balance hourly from Binance. The captured data includes realized and unrealized profit and loss (PnL). Only realized profit is counted towards `"A"` & `"B"`. But momentary unrealized losses will be counted toward drawdown of `"-R%"`. Therefore it is important for an RSR to size each trading position carefully so that the sum of all losses _including unrealized ones_) -- since the most recent all-time high asset value (`"A"`) in all the funded sub-accounts (FSA) that the RSR manages -- does not exceed the the multiple of `"R%"` and `"A"`.
+- `EAV` simply means the money profited from trading the sub-accounts.
+- Here we simulate `"R%"` as a fixed value that is reached every `"M"` months. 
+- EonLabs captures Binance's Margin Balance hourly during LIVE trading. Profit and loss figures, both realized and unrealized, are included in the data (PnL). Only profit that has been realized is counted toward `"A"` and `"B"`. However, unrealized losses will be counted toward the `"-R%"` drawdown. As a result, it's critical for an RSR to size each trading position carefully so that the sum of all losses (including unrealized ones) in all the funded sub-accounts (FSA) that the RSR manages since the most recent all-time high asset value (`"A"`) does not exceed the multiple of `"R%"` and `"A"`.
 
-### RSR TECHNO FEE (A * R% * S%)
+### RSR TECHNO FEE (A * R * S%)
 
-RSR TECHNO FEE is the multiple of EXTENDED ASSET VALUE (`"A"*"R%"`) and `"S%"`. It is payable monthly by EonLabs to RSR as long as WBSUP is maintained by RSR. Interim profit and loss (realized & unrealized) is monitored to assess WBSUP only. Interim P&L will not be used to calculate **RSR TECHNO FEE**, which is calculated on the month-end settlement date only.
+- The multiple of **EXTENDED ASSET VALUE** (`EAV`) and `"S%"` is **RSR TECHNO FEE**.
+- It is paid to RSR on a monthly basis by EonLabs as long as WBSUP is maintained by RSR.
+- WBSUP is evaluated solely on the basis of interim profit and loss (realized and unrealized).
+- The **RSR TECHNO FEE**, which is calculated on the month-end settlement date only, will not be calculated using interim P&L.
 
-### RSR ACCRUED TECHNO FEE
+### TECHNO FEE ACCRUED BY RSR
 
 Cumulative **RSR TECHNO FEE** that RSR received from EonLabs.
 
 ### RSR REDUCED LICENSE FEE (D)
 
-`"D"` is the difference between the license fee (`"Z" BUSD`) and **RSR ACCRUED FEE**. It is a one-time fee payable by EonLabs to RSR not later than certain month (e.g. 12th month). However, EonLabs is entitled to settle the payment of `"D"` ahead of it. In this simulation, we assume it to be settled on the `L-th month`.
+- The difference between the license fee (`"Z" BUSD`) and the **RSR ACCRUED FEE** is referred to as `"D"`.
+- It is a one-time fee that EonLabs must pay to RSR by the end of a specific month (e.g. 12th month).
+- EonLabs, on the other hand, has the right to settle the `"D"` payment ahead of the time.
+- Here we assume `"D"` is settled on the `L-th month`.
+- `"D" = "Z" BUSD - RSR ACCRUED TECHNO FEE`, where "Z" represents the license fee.
+- EonLabs does not have to pay anything extra if the resulting `"D"` is negative in value.
+- EonLabs can begin using RSR's system software on their own once `"D"` is resolved. EonLabs will no longer be required to profit share with RSR if the profit derived from the newly generated strategies.
+- RSR is still trading the existing funded sub-accounts (FSAs). For the remainder of the agreement period, RSR will continue to receive RSR TECHNO FEE.
 
-`"D" = "Z" BUSD - RSR ACCRUED TECHNO FEE`, where `"Z"` is the license fee.  
+### ACCRUED RSR FEE
 
-If the resulting `"D"` is negative in value, EonLabs do not need to pay anything extra. After `"D"` is settled, EonLabs can start using RSR's system software on their own. From then on, EonLabs do not need to profit share with RSR on new strategies. RSR still continues to trade the existent funded sub-accounts (FSAs). RSR continues to receive RSR TECHNO FEE for the rest of the agreement period.
+Cumulative fee that the researcher (RSR) has received from EonLabs. Both **RSR TECHNO FEE** and **RSR REDUCED LICENSE FEE** are included.
 
-### RSR ACCRUED FEE
+### FUND INJECTED BY EONLABS (Y percent of of the post-fee balance)
 
-Cumulative fee that the researcher (RSR) has received from EonLabs. It includes both the **RSR TECHNO FEE** and **RSR REDUCED LICENSE FEE**.
-
-### EONLABS INJECTED FUND (Y% of of the post-fee balance)
-
-EonLabs recognizes RSR's performance by raising the funded sub-account (FSA) balance. As a monthly routine, EonLabs injects additional funds to the FSAs. Funding amount is `"Y%"` of the post-fee FSA balance total at the time. EonLabs injects funds monthly as long as WBSUP is maintained. It is the researcher's responsibility to maintain WBSUP. Funds injection stops once EonLabs obtains RSR's system software license.
+- RSR's trading performance is recognized by EonLabs by an increase in the funded sub-account (FSA) balance.
+- EonLabs injects additional funds into the FSAs on a monthly basis.
+- The funding amount is equal to "Y percent" of the total post-fee FSA balance at the time.
+- As long as WBSUP is maintained, EonLabs injects funds on a monthly basis.
+- It is the researcher's responsibility to keep WBSUP up to date.
+- When EonLabs obtains RSR's system software license, the funds injection stops.
 
 ### EONLABS ACCRUED INJECTED FUND
 
-Cumulative funds that EonLabs contributed to the funded sub-accounts (FSAs). It includes both the startup fund and the subsequent routinely injected fund.
+EonLabs' cumulative contributions to the funded sub-accounts (FSAs). It includes the initial startup fund as well as the subsequent regularly injected fund.
 
-### SETTLED EQUITY BALANCE MONTH END
+### MONTH END EQUITY BALANCE SETTLED
 
-The total asset values of all funded sub-accounts (FSAs) at the end of the month. It is after all the fees payable to RSR and funds contributed by EonLabs.
+At the end of the month, the total asset values of all funded sub-accounts (FSAs) are totaled. It is the result of a post-balance of RSR fees and funds contributed by EonLabs.
