@@ -35,3 +35,45 @@ Let's continue from the example above. Let's say point B ("B") is the next all-t
 
 To illustrate, let's say "T" is agreed by EonLabs and RSR to be `60 days`. If there is a 5.8% (or `-0.058`) drawdown from an all-time high (`"A" = 48390 BUSD`), it means the equity curve is hitting a trough (`80000*(1-0.058) = 75360 BUSD`).
 WBSUP requires that a _minimal_ **EXTENDED ASSET VALUE (EAV)** (`"A"*"R%" = 80000*0.058 = 4640 BUSD`) must be gained within `60 days` after the day when "A" happens. In other words, the equity balance of total asset value must attain or exceed "B" (`"A" * (1+"R%") = 80000 * (1+0.058) = 84640 BUSD`) within `60 days` after the day when "A" happens.
+
+# EXPLAIN WHAT EACH COLUMN MEANS
+
+### EQUITY BALANCE MONTH START (X)
+
+The Researcher (RSR) is responsible for trading an agreed number of funded sub-accounts (FSAs). `"X"` is the asset value of all FSAs at the beginning of the month. `"X"` is denominated in stablecoin (e.g. BUSD). RSR can freely rebalance the funds among the FSAs at any time.
+
+### EXTENDED ASSET VALUE (A * R%)
+
+It means trading profit. Here we simulate `"R%"` as a fixed value that is attained every `"M"` months. During LIVE trading, EonLabs capture Margin Balance hourly from Binance. The captured data includes realized and unrealized profit and loss (PnL). Only realized profit is counted towards `"A"` & `"B"`. But momentary unrealized losses will be counted toward drawdown of `"-R%"`. Therefore it is important for an RSR to size each trading position carefully so that the sum of all losses _including unrealized ones_) -- since the most recent all-time high asset value (`"A"`) in all the funded sub-accounts (FSA) that the RSR manages -- does not exceed the the multiple of `"R%"` and `"A"`.
+
+### RSR TECHNO FEE (A * R% * S%)
+
+RSR TECHNO FEE is the multiple of EXTENDED ASSET VALUE (`"A"*"R%"`) and `"S%"`. It is payable monthly by EonLabs to RSR as long as WBSUP is maintained by RSR. Interim profit and loss (realized & unrealized) is monitored to assess WBSUP only. Interim P&L will not be used to calculate **RSR TECHNO FEE**, which is calculated on the month-end settlement date only.
+
+### RSR ACCRUED TECHNO FEE
+
+Cumulative **RSR TECHNO FEE** that RSR received from EonLabs.
+
+### RSR REDUCED LICENSE FEE (D)
+
+`"D"` is the difference between the license fee (`"Z" BUSD`) and **RSR ACCRUED FEE**. It is a one-time fee payable by EonLabs to RSR not later than certain month (e.g. 12th month). However, EonLabs is entitled to settle the payment of `"D"` ahead of it. In this simulation, we assume it to be settled on the `L-th month`. 
+
+`"D" = "Z" BUSD - RSR ACCRUED TECHNO FEE`, where `"Z"` is the license fee.  
+
+If the resulting `"D"` is negative in value, EonLabs do not need to pay anything extra. After `"D"` is settled, EonLabs can start using RSR's system software on their own. From then on, EonLabs do not need to profit share with RSR on new strategies. RSR still continues to trade the existent funded sub-accounts (FSAs). RSR continues to receive RSR TECHNO FEE for the rest of the agreement period.
+
+### RSR ACCRUED FEE
+
+Cumulative fee that the researcher (RSR) has received from EonLabs. It includes both the **RSR TECHNO FEE** and **RSR REDUCED LICENSE FEE**.
+
+### EONLABS INJECTED FUND (Y% of of the post-fee balance)
+
+EonLabs recognizes RSR's performance by raising the funded sub-account (FSA) balance. As a monthly routine, EonLabs injects additional funds to the FSAs. Funding amount is `"Y%"` of the post-fee FSA balance total at the time. EonLabs injects funds monthly as long as WBSUP is maintained. It is the researcher's responsibility to maintain WBSUP. Funds injection stops once EonLabs obtains RSR's system software license.
+
+### EONLABS ACCRUED INJECTED FUND
+
+Cumulative funds that EonLabs contributed to the funded sub-accounts (FSAs). It includes both the startup fund and the subsequent routinely injected fund.
+
+### SETTLED EQUITY BALANCE MONTH END
+
+The total asset values of all funded sub-accounts (FSAs) at the end of the month. It is after all the fees payable to RSR and funds contributed by EonLabs.
