@@ -1,5 +1,5 @@
 
-# Fund Sub-Account (FSA) Partnership Simulation
+# Funded Sub-Account (FSA) Partnership Simulation
 
 `fsa_simulation.py` simulate a **funded sub-account (FSA) partnership** between EonLabs and Researcher (RSR). A worst-but-still-unfailing performance (**WBSUP**) is always assumed in all FSAs. **WBSUP** is perhaps the most important concept to consider. So please don't hesitate to contact EonLabs for more information if you have any questions.
 
