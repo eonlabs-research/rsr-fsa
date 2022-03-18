@@ -12,36 +12,22 @@ p = inflect.engine()
 rdf = lambda x: "{:.2f}".format(x)
 rd = lambda x: numerize.numerize(x)
 
-# def overviewPrint(filename, start, finish): #*  Print whatever that is between the "start" and "finish" strings
-#     with open(filename, "r", encoding="utf-8") as file:
-#         copy = False
-#         for line in file:
-#             if start in line:
-#                 copy = True
-#                 continue
-#             elif finish in line:
-#                 copy = False
-#                 continue
-#             elif copy:
-#                 if "\'\'" in line and line.strip(): # print only when the line is not empty
-#                     console.print(Markdown(line.strip().lstrip("\'\'").format(d=d)))
-#                 elif line.strip(): # print only when the line is not empty
-#                     console.print(line.strip().format(d=d))
 def overviewPrint(filename, start, finish): #*  Print whatever that is between the "start" and "finish" strings
-    file = txtOverview
-    copy = False
-    for line in file:
-        if start in line:
-            copy = True
-            continue
-        elif finish in line:
-            copy = False
-            continue
-        elif copy:
-            if "\'\'" in line and line.strip(): # print only when the line is not empty
-                console.print(Markdown(line.strip().lstrip("\'\'").format(d=d)))
-            elif line.strip(): # print only when the line is not empty
-                console.print(line.strip().format(d=d))
+    with open(filename, "r", encoding="utf-8") as file:
+        copy = False
+        for line in file:
+            if start in line:
+                copy = True
+                continue
+            elif finish in line:
+                copy = False
+                continue
+            elif copy:
+                if "\'\'" in line and line.strip(): # print only when the line is not empty
+                    console.print(Markdown(line.strip().lstrip("\'\'").format(d=d)))
+                elif line.strip(): # print only when the line is not empty
+                    console.print(line.strip().format(d=d))
+
 def researcherPartnershipSimulationInTable(rateR,rateS,rateY,x_startupCapital,licnZ,timeL,tableTitle):
     eqbSs, exAVs, rsrTs, rsrTA, rsrLs, rsrAs = [0.00], [0.00], [0.00], [0.00], [0.00], [0.00]
     eonFs = [x_startupCapital]
@@ -124,5 +110,7 @@ while not(stopScript):
             Markdown(f"""#  FULL USAGE RIGHT OF THE SYSTEM SOFTWARE ON THE {eonFs.index(0)}th MONTH  """), *textLicenseFee,
             Markdown(f"""#  SUMMARY AT THE END OF THE 24TH MONTH  """), *textSummary,
             sep= "\n")
+        console.print(Markdown(""" ---------- """))
+        console.print(Markdown(""" ---------- """))
     stopScript  = bool(console.input(f'\n[#FF4500]{"v"*106}[/]\nEnter nothing to run this script again. Enter something to stop this script: \n[#FF4500]{"v"*106}[/]\n'))
     console.print(Markdown(""" -----------------------------  """))
