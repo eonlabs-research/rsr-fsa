@@ -7,7 +7,7 @@
 - The columns comprise information such as initial and subsequent fund injections, starting and ending balances of every month, realized profit, and settled RSR payment.
 - Not loss is assumed. Only profit is simulated.
 - Stagnation of extended asset value (EAV) is always less than two (2) months.
-- You can choose to adjust the stagnation，which is either 1 or 2 month. Anything longer than a two-month period is not acceptable by EonLabs since it would fail the minimal requirements of WBSUP (i.e. exceed the risk tolerance as defined by WPSUP).
+- You can choose to adjust the stagnation, which is either 1 or 2 month. Anything longer than a two-month period is not acceptable by EonLabs since it would fail the minimal requirements of WBSUP (i.e. exceed the risk tolerance as defined by WPSUP).
 - `L-th month`, `"D"` and `"Z"` is related to a one-time license fee (or sign-on bonus in case of full-time employment) that can be structured into the simulation.
 
 `fsa_simulation.py` default parameter settings are not fixed in stone. Researchers (RSR) are urged to experiment with the parameters until they discover an appropriate set of settings to submit to EonLabs for consideration.
