@@ -8,7 +8,7 @@
 - There is no expectation of loss. Profit is the only thing that is simulated.
 - Extended asset value (EAV) stagnation is always less than two (2) months.
 - You have the option of changing the duration of the stagnation, which can be 1 or 2 months. EonLabs will not accept anything longer than a two-month period because it would fail the WBSUP's minimum requirements (i.e. exceed the risk tolerance as defined by WPSUP).
-- The terms `L-th month`, `D`, and `Z` refer to a one-time license fee (or a sign-on bonus in the case of full-time employment) that can be built into the simulation.
+- The terms `L-th month`, `D`, and `Z` refer to a one-time fee to pay for predetermined intellectual properties (e.g. software algorithms) or a sign-on bonus (in the case of full-time employment) that can be built into the simulation.
 
 The default parameter settings for `fsa simulation.py` are not set in stone. Researchers (RSR) are encouraged to play around with the parameters until they find a set of settings that they can submit to EonLabs for consideration.
 
@@ -62,29 +62,29 @@ WBSUP mandates that a _minimal_ **EXTENDED ASSET VALUE (EAV)** (i.e. `"A"*"R%" =
 
 Cumulative **RSR TECHNO FEE** that RSR received from EonLabs.
 
-### RSR REDUCED LICENSE FEE (D)
+### RSR REDUCED ONE-TIME FEE (D)
 
-- The difference between the license fee (`"Z" BUSD`) and the **RSR ACCRUED FEE** is referred to as `"D"`.
+- The difference between the **ONE-TIME FEE** (`"Z" BUSD`) and the **RSR ACCRUED FEE** is referred to as `"D"`.
 - It is a one-time fee that EonLabs must pay to RSR by the end of a specific month (e.g. 12th month).
 - EonLabs, on the other hand, has the right to settle the `"D"` payment ahead of the time.
 - Here we assume `"D"` is settled on the `L-th month`.
-- `"D" = "Z" BUSD - RSR ACCRUED TECHNO FEE`, where "Z" represents the license fee.
+- `"D" = "Z" BUSD - RSR ACCRUED TECHNO FEE`, where "Z" represents the **ONE-TIME FEE**.
 - EonLabs does not have to pay anything extra if the resulting `"D"` is negative in value.
-- EonLabs can begin using RSR's system software on their own once `"D"` is resolved. EonLabs will no longer be required to profit share with RSR if the profit derived from the newly generated strategies.
+- EonLabs can begin using RSR's predetermined intellectual properties on their own once `"D"` is resolved. EonLabs will no longer be required to profit share with RSR if the profit derived from the newly generated strategies.
 - RSR is still trading the existing funded sub-accounts (FSAs). For the remainder of the agreement period, RSR will continue to receive RSR TECHNO FEE.
 
 ### ACCRUED RSR FEE
 
-Cumulative fee that the researcher (RSR) has received from EonLabs. Both **RSR TECHNO FEE** and **RSR REDUCED LICENSE FEE** are included.
+Cumulative fee that the researcher (RSR) has received from EonLabs. Both **RSR TECHNO FEE** and **RSR REDUCED ONE-TIME FEE** are included.
 
 ### FUND INJECTED BY EONLABS (Y percent of of the post-fee balance)
 
 - RSR's trading performance is recognized by EonLabs by an increase in the funded sub-account (FSA) balance.
 - EonLabs injects additional funds into the FSAs on a monthly basis.
-- The funding amount is equal to "Y percent" of the total post-fee FSA balance at the time.
+- The funding amount is equal to "Y%" of the total post-fee FSA balance at the time.
+- It is the researcher's responsibility to maintain WBSUP.
 - As long as WBSUP is maintained, EonLabs injects funds on a monthly basis.
-- It is the researcher's responsibility to keep WBSUP up to date.
-- When EonLabs obtains RSR's system software license, the funds injection stops.
+- Whenever RSR's total receivable equals or exceeds **ONE-TIME FEE**, EonLabs may choose to stop further funds injection.
 
 ### EONLABS ACCRUED INJECTED FUND
 

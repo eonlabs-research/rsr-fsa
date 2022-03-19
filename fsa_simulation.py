@@ -67,13 +67,13 @@ def researcherPartnershipSimulationInTable(rateR,rateS,rateY,x_startupCapital,li
 stopScript = False
 while not(stopScript):
     console.print(Markdown(""" -------------------------------------------------------------------------  """))
-    d["scapX"]  = [i * 1000 for i in [float(x) for x in Prompt.ask('Startup trading capital injection? [green]\"X\"[/] (in thousands)', default='26 260').split()]]
-    d["rateR"]  = FloatPrompt.ask(f'Rate of extended asset value? [green]\"R%\"[/]', default=0.10)
-    d["freqM"]  = IntPrompt.ask(f'Stagnation of EAV, i.e. Month needed to extend assset {d["rateR"]*100}% beyond the last all-time high? [green]\"M\"[/]', default=2)
-    d["rateS"]  = FloatPrompt.ask(f'Percentage of profit share on the extended asset value? [green]\"S%\"[/]', default=0.25)
-    d["rateY"]  = FloatPrompt.ask(f'Injected fund amount as a percentage of the post-fee sub-account balance? [green]\"Y%\"[/]', default=0.30)
-    d["licnZ"]  = FloatPrompt.ask(f'[#00FF00]RSR ONE-TIME FEE[/] amount? [green]\"$Z\"[/]', default=45500.00)
-    d["timeL"]  = IntPrompt.ask(f'Max. # of months that [#00FF00]RSR REDUCED ONE-TIME FEE[/] can be settled? [green]\"L\"[/]', default=12)
+    d["scapX"]  = [i * 1000 for i in [float(x) for x in Prompt.ask('Startup trading capital injection? [green]\"X\"[/] (in thousand BUSD)', default='26 260').split()]]
+    d["freqM"]  = IntPrompt.ask(f'Number of month for asset value to stagnate before extending beyond its last all-time high? [green]\"M\"[/]', default=2)
+    d["rateR"]  = FloatPrompt.ask(f'Rate of [b][red]EXTENDED ASSET VALUE (EAV)[/][/] [#ffff00][i]above[/][/] [#BB8FCE]SETTLED EQUITY BALANCE MONTH END[/] of {d["freqM"]}-month ago? [green]\"R%\"[/]', default=0.10)
+    d["rateS"]  = FloatPrompt.ask(f'Percentage of [b][red]EXTENDED ASSET VALUE (EAV)[/][/] shared to RSR? [green]\"S%\"[/]', default=0.25)
+    d["rateY"]  = FloatPrompt.ask(f'Percentage of the post-fee sub-account balance as [#FFB6C1]EONLABS INJECTED FUND[/]? [green]\"Y%\"[/]', default=0.30)
+    d["licnZ"]  = FloatPrompt.ask(f'[#00FF00]RSR ONE-TIME FEE[/] amount as IP rights or sign-on bonus? [green]\"$Z\"[/]', default=45500.00)
+    d["timeL"]  = IntPrompt.ask(f'Max. # of months that EonLabs can wait to choose to settle the [#00FF00]RSR ONE-TIME FEE[/]? [green]\"L\"[/]', default=12)
     d["timeT"]  = d["freqM"] * 30 # day
     
     overviewPrint('fsa_simulation.py', "\'\'\'\'", "\'\'\'")
@@ -88,7 +88,7 @@ while not(stopScript):
             f'"M": [#00ffff]{d["freqM"]*30} days[/] is the maximum allowed stagnation of [b][red]EXTENDED ASSET VALUE (EAV)[/][/] from any ATHs on EC',
             f'"R%": [#00ffff]{d["rateR"]*100}%[/] is the rate of [b][red]EAV[/][/] from the monthly settled all-time highs every {d["freqM"]} months',
             f'"S%": [#00ffff]{d["rateS"]*100}%[/] of [b][red]EAV[/][/] ([#ffff00][i]above[/][/] [#BB8FCE]SETTLED EQUITY BALANCE MONTH END[/] of {d["freqM"]}-month ago) is payable to RSR',
-            f'"Y%": [#00ffff]{d["rateY"]*100}%[/] of the equity balance（[#ffff00][i]after[/][/] [#00FF00]RSR TECHNO FEE[/] deducted) is the new funds injection',
+            f'"Y%": [#00ffff]{d["rateY"]*100}%[/] of the equity balance ([#ffff00][i]after[/][/] [#00FF00]RSR TECHNO FEE[/] deducted) is the new funds injection',
             f'"Z": [#00ffff]{d["licnZ"]} BUSD[/] is [#00FF00]RSR ONE-TIME FEE[/] payable through [#00FF00]RSR ACCRUED TECHNO FEE[/] + [#00FF00]RSR REDUCED ONE-TIME FEE[/]',
             f'"L": [#00ffff]{d["timeL"]}-month[/] is the maximum wait time that EonLabs can choose to settle [#00FF00]RSR ONE-TIME FEE[/]',
         )
