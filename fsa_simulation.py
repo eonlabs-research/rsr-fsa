@@ -95,7 +95,7 @@ while not(stopScript):
         textOneTimeFee      = (
             f'On the [#00ffff]{eonFs.index(0)}th month[/], [#FFB6C1]EONLABS INJECTED FUND[/] to the funded sub-accounts (FSAs) managed by the researcher (RSR) [#ffff00][i]stopped[/][/] because [#00FF00]RSR ACCRUED FEE[/] of [#00ffff]{rd(rsrAs[eonFs.index(0)])} BUSD[/] is [yellow][i]equal (or exceeded)[/][/] [#00ffff]{rd(d["licnZ"])} BUSD[/] ([#00FF00]RSR ONE-TIME FEE[/] "$Z"). And from this point forward:', 
             f'1. EonLabs is no longer obligated to inject/contribute more fund to the FSAs.',
-            f'2. RSR grants EonLabs the rights of using predetermined intellectual properties so that EonLabs can use and operate them to generate trading strategies for the next twelve (12) months and to trade clients funds without having the need to profit share with RSR.',
+            f'2. RSR grants EonLabs the rights of using predetermined intellectual properties so that EonLabs can use and operate them to generate trading strategies for the next twelve (12) months and to trade clients funds without having the need to profit share with RSR; or instead of granting the right to predetermined intellectual properties, RSR can join EonLabs as full-time employee.',
             f'3. Because the partnership contract period is two (2) years, RSR is responsible to continue to trade the FSAs that have been existent for the first {p.number_to_words(eonFs.index(0))} ({eonFs.index(0)}) months and is entitled to receive profit sharing from the FSAs for the remaining {p.number_to_words(24-eonFs.index(0))} ({24-eonFs.index(0)}) months.'
         )
         textSummary         = (
@@ -107,7 +107,7 @@ while not(stopScript):
         console.print(
             table,
             Markdown(f"""#  PARAMETERS: {rdf(x_startupCapital)} BUSD AS STARTUP CAPITAL  """), *textParameters,
-            Markdown(f"""#  FULL USAGE RIGHT OF THE SYSTEM SOFTWARE ON THE {eonFs.index(0)}th MONTH  """), *textOneTimeFee,
+            Markdown(f"""#  FULL USAGE RIGHT OF IPs / FULL-TIME EMPLOYMENT OF RSR {eonFs.index(0)}th MONTH  """), *textOneTimeFee,
             Markdown(f"""#  SUMMARY AT THE END OF THE 24TH MONTH  """), *textSummary,
             sep= "\n")
         console.print(Markdown(""" ---------- """))
