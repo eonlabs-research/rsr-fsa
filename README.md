@@ -1,9 +1,9 @@
 
 # Researcher (RSR) Funded Sub-Account (FSA) Partnership Simulation
 
-Install the dependency packages: `pip install --upgrade pip traceback_with_variables rich numerize inflect`
-
 `fsa simulation.py` simulates an EonLabs-Researcher **funded sub-account (FSA) partnership** (RSR). In all FSAs, a worst-but-still-unfailing performance (**WBSUP**) is assumed. The most important concept to consider is **WBSUP**. So, if you have any questions, please don't hesitate to contact EonLabs for more information.
+
+## FEATURES DESCRIPTION
 
 - The script `fsa simulation.py` creates a table with ten (10) columns and twenty-five (25) rows. It simulates a standard 24-month contract period from the 1st to the 25th, each row represents a single month. The 0-th month is shown as a startup line.
 - The columns include data on initial and subsequent fund injections, monthly beginning and ending balances, realized profit, and settled RSR payment.
@@ -14,19 +14,23 @@ Install the dependency packages: `pip install --upgrade pip traceback_with_varia
 
 The default parameter settings for `fsa simulation.py` are not set in stone. Researchers (RSR) are encouraged to play around with the parameters until they find a set of settings that they can submit to EonLabs for consideration.
 
-# WORST-BUT-STILL-UNFAILING PERFORMANCE (WBSUP)
+## PREREQUISITES
+
+Install the dependency packages: `pip install --upgrade pip traceback_with_variables rich numerize inflect`
+
+## WORST-BUT-STILL-UNFAILING PERFORMANCE (WBSUP)
 
 **WBSUP** is a standard that EonLabs use to assess the RSR's trading performance. It is designed in such a way that everyone knows what to expect before trading begins.
 
-## DEFINITION OF WBSUP
+### DEFINITION OF WBSUP
 
 **WBSUP** denotes that a _minimal_ **EXTENDED ASSET VALUE (EAV)** must be obtained within a specified time period, `"T"` (e.g. `60 days` or `1 month`). It's worth noting that the `EAV` value is dynamically calculated and proportional to the recent downside risk taken. RSR is only allowed to take a maximum of `-R%` of risk on the downside.
 
-### MAXIMUM ALLOWED DOWNSIDE RISK FROM ALL-TIME HIGH (A)
+#### MAXIMUM ALLOWED DOWNSIDE RISK FROM ALL-TIME HIGH (A)
 
 If `"-R%"` = `-10%` (i.e. `-0.10`), the maximum drawdown from _any_ all-time high on the equity curve of total asset value cannot be greater than the multiple of `0.10`.
 
-#### As an illustration
+##### As an illustration
 
 Let's say point A (`"A"`) on the equity curve is an all-time high. The maximum drawdown between `"A"` and before `"A"` is surpassed again is measured in `"-R%"`. During drawdown, `"-R%"` cannot exceed an agreed-upon value (e.g. `-0.10`). WBSUP is considered a failure if `"-R%"` exceeds the agreed-upon value.
 
