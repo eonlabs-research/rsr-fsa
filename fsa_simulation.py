@@ -12,22 +12,6 @@ p = inflect.engine()
 rdf = lambda x: "{:.2f}".format(x)
 rd = lambda x: numerize.numerize(x)
 
-def overviewPrint(filename, start, finish): #*  Print whatever that is between the "start" and "finish" strings
-    with open(filename, "r", encoding="utf-8") as file:
-        copy = False
-        for line in file:
-            if start in line:
-                copy = True
-                continue
-            elif finish in line:
-                copy = False
-                continue
-            elif copy:
-                if "\'\'" in line and line.strip(): # print only when the line is not empty
-                    console.print(Markdown(line.strip().lstrip("\'\'").format(d=d)))
-                elif line.strip(): # print only when the line is not empty
-                    console.print(line.strip().format(d=d))
-
 def researcherPartnershipSimulationInTable(rateR,rateS,rateY,x_startupCapital,licnZ,timeL,tableTitle):
     eqbSs, exAVs, rsrTs, rsrTA, rsrLs, rsrAs = [0.00], [0.00], [0.00], [0.00], [0.00], [0.00]
     eonFs = [x_startupCapital]
@@ -76,7 +60,6 @@ while not(stopScript):
     d["timeL"]  = IntPrompt.ask(f'Max. # of months that EonLabs can wait to choose to settle the [#00FF00]RSR ONE-TIME FEE[/]? [green]\"L\"[/]', default=12)
     d["timeT"]  = d["freqM"] * 30 # day
     
-    overviewPrint('fsa_simulation.py', "\'\'\'\'", "\'\'\'")
     for x_startupCapital in d["scapX"]:
         d["x_startupCapital"] = x_startupCapital
         table,eqbSs,exAVs,rsrTs,rsrLs,rsrAs,eonFs,eqbEs = researcherPartnershipSimulationInTable(

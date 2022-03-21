@@ -1,6 +1,8 @@
 
 # Researcher (RSR) Funded Sub-Account (FSA) Partnership Simulation
 
+Install the dependency packages: `pip install --upgrade pip traceback_with_variables rich numerize inflect`
+
 `fsa simulation.py` simulates an EonLabs-Researcher **funded sub-account (FSA) partnership** (RSR). In all FSAs, a worst-but-still-unfailing performance (**WBSUP**) is assumed. The most important concept to consider is **WBSUP**. So, if you have any questions, please don't hesitate to contact EonLabs for more information.
 
 - The script `fsa simulation.py` creates a table with ten (10) columns and twenty-five (25) rows. It simulates a standard 24-month contract period from the 1st to the 25th, each row represents a single month. The 0-th month is shown as a startup line.
